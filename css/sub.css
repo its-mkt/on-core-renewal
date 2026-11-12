@@ -48,8 +48,8 @@
 .oc-subnav-link{position:relative;display:inline-flex;align-items:center;flex:none;height:var(--oc-sp-48);padding:0 var(--pad);font-size:var(--oc-fs-16);font-weight:600;white-space:nowrap;color:var(--oc-ink-3);transition:color .15s}
 .oc-subnav-link::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--oc-ink);transform:scaleX(0);transition:transform .2s var(--oc-ease)}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-subnav-link:hover{color:var(--oc-ink)}} /* 마우스 올림은 글자색만 — 밑줄은 현재 페이지 표시로만 쓴다 */
-.oc-subnav-link[aria-current="page"]{font-weight:700;color:var(--oc-ink)}
-.oc-subnav-link[aria-current="page"]::after{transform:scaleX(1)}
+.oc-subnav-link[aria-current]{font-weight:700;color:var(--oc-ink)} /* page = 지금 페이지, true = 하위 분류 페이지에서 그 대분류 */
+.oc-subnav-link[aria-current]::after{transform:scaleX(1)}
 
 /* ── 도구줄·필터 ── */
 .oc-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);flex-wrap:wrap;padding-bottom:var(--oc-sp-16);margin-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
@@ -58,9 +58,10 @@
 .oc-toolbar .oc-select{width:auto;min-width:var(--oc-sp-160);height:var(--oc-ctl-sm);font-size:var(--oc-fs-14)}
 /* 필터(.oc-filter) 모양은 제품 유형 탭과 같은 분절형 — main.css .oc-ftabs 에 함께 묶었다 (2026-10-29). 고도몰 말머리는 링크(a)라 글자를 세로 가운데로 */
 .oc-filter a{display:inline-flex;align-items:center}
+.oc-pg-body--alt .oc-filter-btn,.oc-pg-body--alt .oc-filter a{color:var(--oc-ink-2)} /* 회색 바탕 위에서는 틀이 더 어두워져 --oc-ink-3 대비가 4.2:1 — 5장 기준 4.5:1 을 넘게 한 단계 진하게 (흰 바탕은 4.65:1 이라 그대로) */
 .oc-filter:has(> a:only-child){display:none} /* 고를 것이 '전체' 하나뿐(하위 분류·말머리 없음)이면 줄을 출력하지 않는다 */
 .oc-subnav-link:active{color:var(--oc-ink)}
-/* 모바일에서 필터 틀이 화면 폭을 넘치면(sub-biz.js 가 판단) 필터 대신 도구줄의 선택 상자 */
+/* 모바일에서 필터 틀이 화면 폭을 넘치면(버튼형 = sub-biz.js, 링크형 = main.js 가 판단) 필터 대신 도구줄의 선택 상자 */
 .oc-filter.oc-is-compact,.oc-fsel{display:none}
 .oc-fsel.oc-is-on{display:inline-block}
 .oc-tag{display:inline-block;padding:var(--oc-sp-4) var(--oc-sp-12);border-radius:999px;background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-2)}

@@ -245,6 +245,40 @@
   });
   syncBestMore($('#oc-best .oc-ftabs [aria-selected="true"]'));
 
+  /* ── 링크형 목록 필터 (.oc-filter 안의 a — 상품 하위 분류·고도몰 말머리) ──
+     모바일(768 미만)에서 분절형 틀이 화면 폭을 넘치면 필터 줄을 숨기고 도구줄 '총 N건' 옆의 선택 상자로 바꾼다(규칙 9-5).
+     같은 화면을 거르는 버튼형 필터([data-filter-for])는 sub-biz.js 가 맡는다. 고르면 그 링크 주소로 이동한다.
+     선택 상자 꾸미기(아래)보다 먼저 만들어 다른 선택 상자와 같은 모양이 되게 한다 */
+  $$('.oc .oc-filter:not([data-filter-for])').forEach(function (bar) {
+    var links = $$('a[href]', bar), tool = $('.oc-toolbar', bar.parentNode);
+    if (links.length < 2 || !tool) return;
+    var box = document.createElement('span'), sel = document.createElement('select');
+    box.className = 'oc-fsel';
+    sel.className = 'oc-select';
+    sel.setAttribute('aria-label', bar.getAttribute('aria-label') || '분류');
+    links.forEach(function (a) {
+      var o = document.createElement('option');
+      o.value = a.getAttribute('href'); o.textContent = a.textContent;
+      o.selected = a.getAttribute('aria-current') === 'page';
+      sel.appendChild(o);
+    });
+    box.appendChild(sel);
+    var cnt = tool.firstElementChild; // '총 N건' 바로 오른쪽
+    tool.insertBefore(box, cnt ? cnt.nextSibling : tool.firstChild);
+    sel.addEventListener('change', function () { if (sel.value) location.href = sel.value; });
+    // 넘치는지 재려면 필터가 보여야 하므로 잠깐 펼친 뒤 정한다
+    function fit() {
+      bar.classList.remove('oc-is-compact');
+      var compact = window.innerWidth < 768 && bar.scrollWidth > bar.clientWidth + 1;
+      bar.classList.toggle('oc-is-compact', compact);
+      box.classList.toggle('oc-is-on', compact);
+    }
+    var raf;
+    window.addEventListener('resize', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); });
+    window.addEventListener('load', fit); // 웹폰트가 늦게 오면 칩 폭이 바뀐다
+    fit();
+  });
+
   /* ── 선택 상자 (.oc-select) ──
      모든 기기: .oc-sel 로 감싸 선 화살표 아이콘을 붙인다.
      마우스 기기(PC): 운영체제 기본 목록 대신 사이트 디자인 목록을 띄운다. 터치 기기는 휴대폰 기본 선택 화면이 더 쓰기 쉬워 그대로 둔다.
@@ -422,7 +456,7 @@
 
   /* ── 비교 (고도몰 기본 기능 없음 → 견적함과 같은 스킨 JS + 브라우저 저장) ──
      담을 때 카드에 보이는 정보(사진·브랜드·이름·품번·가격·짧은 설명 사양)를 저장해 두고, 비교 화면은 저장한 값으로만 그린다.
-     비교 체크·비교 바는 PC(768 이상) 전용 — 모바일은 CSS 로 숨긴다 */
+     비교 체크·비교 바는 모든 폭 — 모바일(767 이하)은 CSS 가 바를 하단 고정 바 위 한 줄(사진만)로 바꾼다 (2026-11-11) */
   var cmp = store.get('oc-cmp', []); // [{no, name, img, price, brand, mfg, spec}]
   var cmpBar = $('#oc-cmp'), cmpView = $('[data-cmp-view]');
   function cmpHas(no) { return cmp.some(function (x) { return x.no === no; }); }
