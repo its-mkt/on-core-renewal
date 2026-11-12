@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>/* oc-vp-min */(function(){var m=document.querySelector('meta[name=viewport]');if(!m)return;var d=m.getAttribute('content');function fit(){var s=screen,w=matchMedia('(orientation: landscape)').matches?Math.max(s.width,s.height):Math.min(s.width,s.height);m.setAttribute('content',w<360?'width=360, viewport-fit=cover':d);}fit();addEventListener('orientationchange',function(){setTimeout(fit,100);});})();</script>
+<title>ThinkStation P4 | 온코어</title>
+<meta name="description" content="Lenovo ThinkStation P4 Tower 모델입니다.">
+<!-- 목업 전용 페이지: pages-src/goods-workstation-p4.html 을 _tools/build-pages.js 가 빌드한 결과. 이 파일을 직접 고치지 말고 조각 파일을 고친다 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="../css/mock.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/sub.css">
+<link rel="stylesheet" href="../css/sub-goods.css">
+<link rel="stylesheet" href="../css/review-bar.css">
+<script src="../js/review-bar.js"></script>
+</head>
+<body>
+<div class="oc">
+
+<!-- 시안 검토용 도구 막대 (실제 사이트에는 없음) — renewal-plan.html 과 같은 막대(css/review-bar.css) -->
+<div class="oc-review-bar">
+  <div class="oc-rb-in">
+    <span class="oc-rb-title">온코어 리뉴얼 <em>서브 페이지 시안</em></span>
+    <nav class="oc-rb-nav" aria-label="문서">
+      <a href="../index.html">제안서</a>
+      <a href="../project-plan.html">실행 계획</a>
+      <a href="../renewal-plan.html">디자인 시안</a>
+    </nav>
+  </div>
+</div>
+
+<!-- 상단 고정 묶음: 안내줄 + 헤더 | 고도몰: outline/header/standard.html 전체가 이 묶음. 고정(sticky)은 이 div 대신 바깥 #header_warp 에 건다 -->
+<div class="oc-top" id="oc-top">
+
+<!-- 헤더 | 고도몰: outline/header/standard.html 교체. 로고는 기존 로고 배너(dataBanner) 그대로 -->
+<header class="oc-hd" id="oc-hd">
+  <div class="oc-wrap oc-hd-in">
+    <button type="button" class="oc-hd-burger" aria-label="메뉴 열기" data-open="oc-mnav"><span></span></button>
+    <a href="../renewal-plan.html" class="oc-hd-logo" aria-label="온코어 홈"><img src="../img/oncore-logo.png" alt="온코어(주) ONCORE" width="208" height="66"></a>
+    <!-- 상단 메뉴: 제품 / 프로모션 / 기업소식 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰, 구축사례 → 기업소식). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
+    <nav class="oc-gnb" aria-label="주 메뉴">
+      <div class="oc-gnb-item oc-has-mega">
+        <a class="oc-gnb-link" href="goods-all.html" aria-haspopup="true" aria-expanded="false" aria-controls="oc-mega" aria-current="true">제품 <svg class="oc-gnb-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><!-- 2026-11-12: 누르면 전체 제품, 메가메뉴는 마우스를 올리면(터치는 첫 탭, 키보드는 ↓) 열린다 -->
+      </div>
+      <a class="oc-gnb-link" href="promotion.html">프로모션</a>
+      <a class="oc-gnb-link" href="cases.html">기업소식</a>
+      <div class="oc-gnb-item oc-has-drop">
+        <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-drop">고객지원 <svg class="oc-gnb-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="oc-drop" id="oc-drop" hidden>
+          <a class="oc-drop-link" href="notice.html">공지사항</a>
+          <a class="oc-drop-link" href="inquiry.html">1:1 문의</a>
+          <a class="oc-drop-link" href="cs.html">고객센터</a>
+        </div>
+      </div>
+      <a class="oc-gnb-link" href="estimate-list.html">견적 요청</a>
+    </nav>
+    <!-- 고도몰: 프로필 아이콘은 로그인 여부(gd_is_login)로 링크를 바꿔 출력: 비로그인 = 로그인 화면 / 로그인 = 마이페이지 (회원가입은 로그인 화면·모바일 메뉴) -->
+    <div class="oc-hd-act">
+      <button type="button" class="oc-ic-btn" aria-label="검색" data-open="oc-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <a href="login.html" class="oc-ic-btn" aria-label="로그인">
+        <!-- 아이콘: Lucide/Feather user (ISC·MIT) — 아래가 열린 일반 프로필 모양, 선 굵기는 돋보기와 같은 1.8 --><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
+      </a>
+      <button type="button" class="oc-qbtn" data-open="oc-quote">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.5L19 8v12.5H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3.5V8h5M10 12.5h6M10 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>견적함</span><b class="oc-qcount" data-qcount>0</b>
+      </button>
+    </div>
+  </div>
+
+  <!-- 메가메뉴 | 고도몰: 카테고리 위젯 데이터(@ data / .children)로 출력. 상품 수는 변수가 없어 넣지 않는다.
+       상품 0개인 분류(ASUS AI GPU 서버·ThinkCentre·ExpertBook)는 관리자에서 '노출 안 함' -->
+  <div class="oc-mega" id="oc-mega" hidden>
+    <div class="oc-wrap oc-mega-in">
+      <div class="oc-mega-cols">
+        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-server.html">서버</a></h4><a class="oc-mega-link" href="goods-server-thinksystem.html">Lenovo ThinkSystem</a></div>
+        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-workstation.html">워크스테이션</a></h4><a class="oc-mega-link" href="goods-workstation-thinkstation.html">Lenovo ThinkStation</a><a class="oc-mega-link" href="goods-workstation-p2.html">P2</a><a class="oc-mega-link" href="goods-workstation-p3.html">P3</a><a class="oc-mega-link" href="goods-workstation-p4.html">P4</a><a class="oc-mega-link" href="goods-workstation-p5.html">P5</a></div>
+        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-desktop.html">데스크탑</a></h4><a class="oc-mega-link" href="goods-desktop-expertcenter.html">ASUS ExpertCenter</a></div>
+        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-notebook.html">노트북</a></h4><a class="oc-mega-link" href="goods-notebook-thinkpad.html">Lenovo ThinkPad</a><a class="oc-mega-link" href="goods-notebook-x1carbon.html">X1 Carbon</a><a class="oc-mega-link" href="goods-notebook-l16.html">L16</a></div>
+        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-storage.html">스토리지</a></h4><a class="oc-mega-link" href="goods-storage-hc.html">HC All-Flash</a></div>
+        <a href="goods-all.html" class="oc-mega-all oc-mega-link">전체 제품 보기</a>
+      </div>
+      <!-- 고도몰: 헤더 스킨의 정적 HTML (바꿀 때 디자인 편집) -->
+      <a href="goods-workstation-p5.html" class="oc-mega-tile">
+        <span class="oc-mt-img"><img src="../img/p5.jpg" width="1000" height="1000" alt=""></span>
+        <span class="oc-mt-txt"><em class="oc-mt-label">이달의 추천</em><b class="oc-mt-name">ThinkStation P5</b>설계·렌더링 작업용 Xeon 워크스테이션</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 검색 패널 | 고도몰: proc/_header_search.html (form 이름 keyword, 최근 검색어 recentKeyword, 추천상품 proc/_recom_goods.html 1개) -->
+  <div class="oc-search" id="oc-search" hidden>
+    <div class="oc-wrap">
+      <form class="oc-search-box" role="search" action="search.html" method="get">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="search" name="q" placeholder="모델명·사양·품번으로 검색" aria-label="검색어">
+        <button type="button" class="oc-search-close" data-close aria-label="검색 닫기">닫기</button>
+      </form>
+      <div class="oc-search-grid">
+        <!-- 고도몰: 최근 검색어 반복 변수 recentKeyword -->
+        <div class="oc-search-col"><h5 class="oc-search-t">최근 검색어</h5><div class="oc-chips"><a href="search.html?q=ThinkStation%20P3">ThinkStation P3</a><a href="search.html?q=SR650%20V4">SR650 V4</a><a href="search.html?q=X1%20%EC%B9%B4%EB%B3%B8">X1 카본</a></div></div>
+        <!-- 고도몰: 헤더 검색 위젯에는 인기 검색어 변수가 없어 스킨에 직접 적는 '추천 검색어'로 둔다 -->
+        <div class="oc-search-col"><h5 class="oc-search-t">추천 검색어</h5><div class="oc-chips"><a href="search.html?q=P5%20%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98">P5 워크스테이션</a><a href="search.html?q=RTX%202000%20Ada">RTX 2000 Ada</a><a href="search.html?q=ThinkSystem%20SR250">ThinkSystem SR250</a><a href="search.html?q=All-Flash%20%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80">All-Flash 스토리지</a><a href="search.html?q=ExpertCenter%20D7">ExpertCenter D7</a></div></div>
+        <!-- 고도몰: 추천상품 위젯은 관리자에서 지정한 1개 상품만 출력 -->
+        <div class="oc-search-col"><h5 class="oc-search-t">추천 상품</h5>
+          <a href="goods-view.html?no=1000000367" class="oc-mini"><img class="oc-mini-img" src="../img/p3-sff.jpg" width="1000" height="1000" alt=""><span><b class="oc-mini-name">ThinkStation P3 Ultra SFF</b>3,077,000원</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+</div><!-- /.oc-top -->
+
+<main class="oc-sub">
+<div class="oc-pg-hd">
+  <div class="oc-wrap">
+    <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li><a href="goods-all.html">전체 제품</a></li><li><a href="goods-workstation.html">워크스테이션</a></li><li aria-current="page">ThinkStation P4</li></ol>
+    <h1 class="oc-pg-t">ThinkStation P4</h1>
+    <p class="oc-pg-d">Lenovo ThinkStation P4 타워 모델입니다.</p>
+    <nav class="oc-subnav" aria-label="제품 분류"><a class="oc-subnav-link" href="goods-all.html">전체</a><a class="oc-subnav-link" href="goods-server.html">서버</a><a class="oc-subnav-link" href="goods-workstation.html" aria-current="true">워크스테이션</a><a class="oc-subnav-link" href="goods-desktop.html">데스크탑</a><a class="oc-subnav-link" href="goods-notebook.html">노트북</a><a class="oc-subnav-link" href="goods-storage.html">스토리지</a></nav>
+  </div>
+</div>
+
+<div class="oc-pg-body oc-pg-body--alt">
+  <div class="oc-wrap">
+    <nav class="oc-filter" aria-label="워크스테이션 분류"><a class="oc-filter-btn" href="goods-workstation.html">전체</a><a class="oc-filter-btn" href="goods-workstation-p2.html">P2</a><a class="oc-filter-btn" href="goods-workstation-p3.html">P3</a><a class="oc-filter-btn" href="goods-workstation-p4.html" aria-current="page">P4</a><a class="oc-filter-btn" href="goods-workstation-p5.html">P5</a></nav>
+    <div class="oc-toolbar">
+      <span>총 <b data-goods-count>1</b>건</span>
+      <select class="oc-select" data-goods-sort aria-label="정렬">
+        <option value="">추천순</option>
+        <option value="sellcnt">판매인기순</option>
+        <option value="price_asc">낮은 가격순</option>
+        <option value="price_dsc">높은 가격순</option>
+        <option value="date">최신순</option>
+      </select>
+    </div>
+    <!-- 고도몰: 카테고리 목록 템플릿(goods/list/list_01.html)이 상품 카드를 출력한다. 시안은 data-goods 의 상품번호로 채운다 -->
+    <h2 class="oc-sr">상품 목록</h2>
+    <div class="oc-display" data-goods="1000000721"></div>
+    <p class="oc-goods-note">표시 가격은 부가세 포함이며, 수량 구매나 구성 변경은 견적으로 안내해 드립니다. 가격이 없는 상품은 구성에 따라 견적을 드립니다.</p>
+  </div>
+</div>
+
+<!-- 마무리 영역: 메인 시안과 같은 .oc-final. 제목·설명만 페이지마다 다르고, 보조 문구·전화·견적 버튼은 메인과 같다 -->
+<section class="oc-final">
+  <div class="oc-wrap oc-final-in">
+    <div class="oc-final-txt">
+      <h2 class="oc-final-t">원하는 구성을 찾지 못하셨나요?</h2>
+      <p class="oc-final-d">그래픽카드와 메모리는 작업에 맞게 바꿔 견적받을 수 있습니다.</p>
+      <ul class="oc-final-pts">
+        <li class="oc-final-pt">담당자 직접 회신</li>
+        <li class="oc-final-pt">용도에 맞춘 사양 제안</li>
+        <li class="oc-final-pt">세금계산서 발행</li>
+      </ul>
+    </div>
+    <div class="oc-final-card">
+      <a href="tel:02-6949-1518" class="oc-final-tel">
+        <i class="oc-final-tel-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></i>
+        <span><small class="oc-final-tel-label">전화 상담 · 평일 09:00–18:00</small><b class="oc-final-tel-num">02-6949-1518</b></span>
+      </a>
+      <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-p" data-quote-go>견적 요청하기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <p class="oc-final-note">법인·개인사업자 모두 요청할 수 있습니다</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 푸터 | 고도몰: outline/footer/standard.html 교체. 회사 정보는 gMall.companyNm gMall.ceoNm gMall.address gMall.addressSub gMall.businessNo gMall.onlineOrderSerial gMall.privateNm gMall.phone gMall.email gMall.centerHours.
+     사업자정보 확인은 gd_popup_bizInfo(사업자번호 숫자만) 로 연다 (공정위 조회 창에 우리 번호가 바로 뜬다) -->
+<footer class="oc-ft">
+  <!-- 위: 약관·정책 링크 줄 + 공식 채널. 아래 선 하나로 두 구간을 나눈다 -->
+  <div class="oc-ft-bar">
+    <div class="oc-wrap oc-ft-bar-in">
+      <nav class="oc-ft-links" aria-label="푸터 메뉴"><a class="oc-ft-link" href="company.html">회사소개</a><a class="oc-ft-link" href="terms.html">이용약관</a><a class="oc-ft-link" href="privacy.html"><b>개인정보처리방침</b></a><a class="oc-ft-link" href="usage.html">이용안내</a><a class="oc-ft-link" href="cs.html">고객센터</a><a class="oc-ft-link" href="partnership.html">광고·제휴 문의</a></nav>
+      <!-- 운영 사이트 푸터 SNS 와 같은 주소, 글자 대신 로고 아이콘(이름은 aria-label·title). 고도몰: 관리자 > 기본설정 의 SNS 주소를 쓰면 그 값으로.
+           로고: Instagram·Facebook·Naver N = Simple Icons(CC0), 블로그 말풍선·스마트스토어 쇼핑백은 N 을 넣어 그린 모양 -->
+      <p class="oc-ft-sns"><a class="oc-ft-sns-link" href="https://blog.naver.com/on-core" target="_blank" rel="noopener" aria-label="네이버 블로그" title="네이버 블로그"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5h16A2.5 2.5 0 0 1 22.5 5v11a2.5 2.5 0 0 1-2.5 2.5h-6.5l-4.5 3.8v-3.8H4A2.5 2.5 0 0 1 1.5 16V5A2.5 2.5 0 0 1 4 2.5z"/><path fill="#fff" transform="translate(8.25 6.75) scale(.3125)" d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845Z"/></svg></a><a class="oc-ft-sns-link" href="https://www.instagram.com/oncore_official" target="_blank" rel="noopener" aria-label="인스타그램" title="인스타그램"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a><a class="oc-ft-sns-link" href="https://www.facebook.com/Oncore.Meta" target="_blank" rel="noopener" aria-label="페이스북" title="페이스북"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a><a class="oc-ft-sns-link" href="https://smartstore.naver.com/on-core" target="_blank" rel="noopener" aria-label="네이버 스마트스토어" title="네이버 스마트스토어"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7V6a3.5 3.5 0 0 1 7 0v1" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7h17l-1.2 14.5H4.7z"/><path fill="#fff" transform="translate(8.5 10.25) scale(.2917)" d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845Z"/></svg></a></p>
+    </div>
+  </div>
+  <!-- 아래: 왼쪽 = 로고·사업자 정보·저작권, 오른쪽 = 고객센터 (768 미만은 로고 → 고객센터 → 사업자 정보 → 저작권) -->
+  <div class="oc-wrap oc-ft-body">
+    <div class="oc-ft-logo">
+      <img src="../img/oncore-logo.png" alt="온코어(주)" width="156" height="50">
+      <!-- 취급 브랜드 로고: Lenovo·ASUS = Simple Icons(CC0), 로고 영역만 보이게 viewBox 를 잘라 씀 -->
+      <div class="oc-ft-brand"><span>취급 브랜드</span><div class="oc-ft-badges"><span class="oc-lenovo" role="img" aria-label="Lenovo" title="Lenovo"><svg viewBox="0 7.997 24 8.006" aria-hidden="true"><path d="M21.044 12.288c0 .5-.343.867-.815.867-.464 0-.827-.38-.827-.867 0-.51.343-.868.815-.868.464 0 .827.381.827.868zm-14.305-.92a.787.787 0 0 0-.651.307.991.991 0 0 0-.172.738l1.479-.614a.708.708 0 0 0-.656-.43zm6.963.052c-.472 0-.816.358-.816.868 0 .486.364.867.828.867.472 0 .815-.368.815-.867 0-.487-.363-.868-.827-.868zM24 7.997v8.006H0V7.997h24zM5.01 13.05H3.088V9.825H2.23v4.003h2.78v-.777zm1.137-.094l2.163-.897a1.667 1.667 0 0 0-.37-.86c-.284-.33-.704-.505-1.216-.505-.931 0-1.633.686-1.633 1.593 0 .93.704 1.593 1.726 1.593.572 0 1.158-.272 1.432-.589l-.535-.411c-.357.264-.56.326-.885.326-.292 0-.52-.09-.682-.25zm5.57-1.039c0-.709-.507-1.223-1.252-1.223a1.28 1.28 0 0 0-1.005.494v-.442h-.846v3.081h.846v-1.753c0-.316.245-.651.698-.651.35 0 .712.243.712.651v1.753h.847v-1.91zm3.647.37c0-.904-.725-1.593-1.65-1.593-.933 0-1.663.7-1.663 1.593 0 .903.726 1.592 1.651 1.592.932 0 1.662-.7 1.662-1.592zm2.066 1.54l1.268-3.081h-.967l-.765 2.099-.765-2.1h-.966l1.268 3.081h.927zm4.449-1.54c0-.904-.725-1.593-1.65-1.593-.932 0-1.662.7-1.662 1.593 0 .903.725 1.592 1.65 1.592.932 0 1.662-.7 1.662-1.592z"/></svg></span><span class="oc-asus" role="img" aria-label="ASUS" title="ASUS"><svg viewBox="0 9.4 24 5.2" aria-hidden="true"><path d="M23.904 10.788V9.522h-4.656c-.972 0-1.41.6-1.482 1.182v.018-1.2h-1.368v1.266h1.362zm-6.144.456l-1.368-.078v1.458c0 .456-.228.594-1.02.594H14.28c-.654 0-.93-.186-.93-.594v-1.596l-1.386-.102v1.812h-.03c-.078-.528-.276-1.14-1.596-1.23L6 11.22c0 .666.474 1.062 1.218 1.14l3.024.306c.24.018.414.09.414.288 0 .216-.18.24-.456.24H5.946V11.22l-1.386-.09v3.348h5.646c1.26 0 1.662-.654 1.722-1.2h.03c.156.864.912 1.2 2.19 1.2h1.41c1.494 0 2.202-.456 2.202-1.524zm4.398.258l-4.338-.258c0 .666.438 1.11 1.182 1.17l3.09.24c.24.018.384.078.384.276 0 .186-.168.258-.516.258h-4.212v1.29h4.302c1.356 0 1.95-.474 1.95-1.554 0-.972-.534-1.338-1.842-1.422zm-10.194-1.98h1.386v1.266h-1.386zM3.798 11.07l-1.506-.15L0 14.478h1.686zm7.914-1.548h-4.23c-.984 0-1.416.612-1.518 1.2v-1.2H3.618c-.33 0-.486.102-.642.33l-.648.936h9.384Z"/></svg></span></div></div>
+    </div>
+    <div class="oc-ft-info">
+      <p class="oc-ft-info-row"><span><b>온코어(주)</b></span><span>대표 우명구</span><span>서울특별시 영등포구 63로 32(여의도동) 211호</span></p>
+      <p class="oc-ft-info-row"><span>사업자등록번호 689-87-03887 <a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=6898703887" target="_blank" rel="noopener">사업자정보 확인</a></span><span>통신판매업신고 2026-0919</span><span>개인정보관리자 우명구</span></p>
+      <p class="oc-ft-info-row"><span>호스팅 제공 엔에이치엔커머스(주)</span></p>
+    </div>
+    <div class="oc-ft-end">
+      <p class="oc-copy">© 2026 ONCORE Co., Ltd. All rights reserved.</p>
+      <!-- 고도몰: 공정위 로고(gFairTrade)는 넣지 않는다 — 법정 의무가 아니고, 사업자번호 옆 '사업자정보 확인' 링크가 같은 조회로 간다 (2026-10-27) -->
+    </div>
+    <div class="oc-ft-cs">
+      <h5 class="oc-ft-cs-t">고객센터</h5>
+      <a href="tel:02-6949-1518" class="oc-tel">02-6949-1518</a>
+      <p class="oc-ft-cs-row">평일 09:00–18:00 (점심 12:00–13:00)</p>
+      <p class="oc-ft-cs-row">주말·공휴일 휴무</p>
+      <p class="oc-ft-cs-row"><a href="mailto:oncore@on-core.co.kr">oncore@on-core.co.kr</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- 모바일 하단 고정 바 | 채팅 상담은 사이트에 이미 있는 채널톡을 연다 (ChannelIO('showMessenger')) -->
+<nav class="oc-mbar" aria-label="빠른 메뉴">
+  <button type="button" data-open="oc-quote" class="oc-mbar-q oc-mbar-item"><svg class="oc-mbar-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.5L19 8v12.5H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3.5V8h5M10 12.5h6M10 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>견적 요청 <b data-qcount>0</b></button>
+</nav>
+
+<!-- 비교 바 | 고도몰에는 상품 비교 기능이 없어 스킨 JS + 브라우저 저장으로 만든다(견적함과 같은 방식). PC(768 이상) 전용.
+     '비교하기'는 비교 화면으로 이동 — 고도몰: 추가 페이지 main/html.php?htmid=goods/compare.html -->
+<div class="oc-cmp-scrim" data-cmp-pop-close hidden></div>
+<div class="oc-cmp" id="oc-cmp" hidden>
+  <!-- 모바일(767 이하) 담은 제품 목록 (2026-11-12 사용자 결정): 비교 바는 사진만 보이므로, 사진 줄을 누르면 바 위로 이름·빼기 목록이 펼쳐진다.
+       PC 는 바의 칸마다 이름·× 가 있어 쓰지 않는다. 내용은 main.js renderCmp 가 바와 함께 그린다 -->
+  <div class="oc-cmp-pop" id="oc-cmpPop" hidden>
+    <div class="oc-wrap">
+      <div class="oc-cmp-pop-hd"><b class="oc-cmp-pop-t">비교할 제품 <span class="oc-cmp-pop-n" id="oc-cmpPopN">0/4</span></b><button type="button" class="oc-cmp-pop-clear" data-cmp-clear>모두 빼기</button><!-- 모바일은 바의 '비우기' 대신 여기 (2026-11-12) — 한 단계 안이라 실수로 다 비우기 어렵고, 바에 사진 40px 자리가 생긴다 --><button type="button" class="oc-ic-btn oc-cmp-pop-x" data-cmp-pop-close aria-label="목록 접기"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><!-- 접기 = 아래 화살표(2026-11-12): 줄마다 빼기가 × 라 닫기까지 × 면 뜻이 겹친다 --></div>
+      <ul class="oc-cmp-pop-list" id="oc-cmpPopList"></ul>
+    </div>
+  </div>
+  <div class="oc-wrap oc-cmp-in">
+    <div class="oc-cmp-list" id="oc-cmpList"></div>
+    <div class="oc-cmp-act"><span id="oc-cmpCount">0/4</span><button type="button" class="oc-btn oc-btn-sm oc-btn-o" data-cmp-clear>비우기</button><a href="compare.html" class="oc-btn oc-btn-sm oc-btn-d" data-cmp-go>비교하기</a></div>
+  </div>
+</div>
+
+<!-- 견적함 | 스킨 JS + 브라우저 저장. '견적 요청서 작성'은 기존 dbk 견적 폼으로 이동하면서
+     담은 제품을 goodsNm·spec 주소값으로 넘긴다 → 폼의 '내용' 칸에 자동 입력 (dbk_estimate_form.html 의 기존 기능, 서버 수정 없음) -->
+<div class="oc-scrim" id="oc-scrim" hidden></div>
+<aside class="oc-drawer" id="oc-quote" aria-label="견적함" hidden>
+  <div class="oc-dr-hd"><h3 class="oc-dr-t">견적함 <b data-qcount>0</b></h3><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="oc-dr-body">
+    <ul class="oc-qlist" id="oc-qlist"></ul>
+    <div class="oc-qempty" id="oc-qempty">
+      <svg class="oc-qempty-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 7h15l9 9v25H14z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M29 7v9h9M20 25h12M20 31h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      <b class="oc-qempty-t">아직 담은 제품이 없습니다.</b>
+      <p>모델을 정하지 않았다면 바로 견적 요청서를 써도 됩니다. 용도와 예산만 적어 주세요.</p>
+    </div>
+    <div class="oc-dr-note">
+      <b>다음 화면에서 이렇게 진행됩니다</b>
+      <ol><li>견적 요청서에 담당자·업체명·연락처·이메일·견적 비밀번호를 적습니다.</li><li>담은 제품과 수량은 '내용' 칸에 자동으로 들어갑니다.</li><li>접수되면 담당자가 배정되고 문자로 알려 드립니다.</li></ol>
+    </div>
+  </div>
+  <div class="oc-dr-ft">
+    <a class="oc-btn oc-btn-p oc-btn-block" id="oc-qsubmit" href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener">견적 요청서 작성</a>
+    <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-quote-cmp hidden>비교하기</button><!-- 견적함 '비교하기' (2026-10-28): 2개 이상이면 보인다 — 앞 4개로 비교 화면 -->
+    <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-qclear>견적함 비우기</button>
+  </div>
+</aside>
+
+<!-- 모바일 메뉴 | 고도몰: 카테고리 위젯 데이터 (상품 수 없음) -->
+<aside class="oc-drawer oc-drawer-l" id="oc-mnav" aria-label="전체 메뉴" hidden>
+  <div class="oc-dr-hd"><img src="../img/oncore-logo.png" alt="온코어" width="120" height="38"><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="oc-dr-body oc-mnav">
+    <!-- 목록 + 아코디언: 하위가 있는 메뉴(제품·고객지원)는 눌러서 펼친다 (main.js .oc-mnav-acc). 로그인·회원가입은 맨 아래 버튼 -->
+    <nav class="oc-mnav-nav" aria-label="전체 메뉴">
+      <div class="oc-mnav-grp">
+        <button type="button" class="oc-mnav-row oc-mnav-acc" aria-expanded="false" aria-controls="oc-mnav-goods">제품<svg class="oc-mnav-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="oc-mnav-sub" id="oc-mnav-goods" hidden><a class="oc-mnav-sublink" href="goods-all.html">전체 제품</a><a class="oc-mnav-sublink" href="goods-server.html">서버</a><a class="oc-mnav-sublink" href="goods-workstation.html">워크스테이션</a><a class="oc-mnav-sublink" href="goods-desktop.html">데스크탑</a><a class="oc-mnav-sublink" href="goods-notebook.html">노트북</a><a class="oc-mnav-sublink" href="goods-storage.html">스토리지</a></div>
+      </div>
+      <a class="oc-mnav-row" href="promotion.html">프로모션</a>
+      <a class="oc-mnav-row" href="cases.html">기업소식</a>
+      <a class="oc-mnav-row" href="estimate-list.html">견적 요청</a>
+      <div class="oc-mnav-grp">
+        <button type="button" class="oc-mnav-row oc-mnav-acc" aria-expanded="false" aria-controls="oc-mnav-cs">고객지원<svg class="oc-mnav-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="oc-mnav-sub" id="oc-mnav-cs" hidden><a class="oc-mnav-sublink" href="notice.html">공지사항</a><a class="oc-mnav-sublink" href="inquiry.html">1:1 문의</a><a class="oc-mnav-sublink" href="cs.html">고객센터</a></div>
+      </div>
+    </nav>
+    <!-- 맨 아래 로그인·회원가입 버튼 줄은 없앴다(2026-10-28) — 헤더 프로필 아이콘이 모바일에서도 보인다 -->
+  </div>
+</aside>
+
+<div class="oc-toast" id="oc-toast" role="status" aria-live="polite"></div>
+
+</div><!-- /.oc -->
+
+<script>window.OC_ROOT = '../'; window.OC_VIEW = 'goods-view.html';</script>
+<script src="../js/mock-goods.js"></script>
+<script src="../js/sub-goods.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -67,6 +67,7 @@
 
 /* ── 검색 ── */
 .oc-gs-form{display:flex;gap:var(--oc-sp-8);max-width:40rem;margin-top:var(--oc-sp-24)}
+.oc-gs-form .oc-btn-ic{height:var(--oc-sp-48)} /* 돋보기 버튼 = 검색칸 높이(48, 모바일 42) — 모바일 버튼 기본 높이 44 와 어긋나지 않게 */
 .oc-gs-form .oc-input{height:var(--oc-sp-48);padding:0 var(--oc-sp-16);border-radius:999px;flex:1;min-width:0} /* 좌우 16 — 다른 검색칸과 같게 (2026-10-29 사용자 지정, 전 24) */
 .oc-gs-empty{padding:var(--oc-sp-64) 0;text-align:center}
 .oc-gs-empty[hidden],.oc-gs-result[hidden]{display:none}
@@ -118,11 +119,10 @@
 @media (max-width:767px){
   .oc-gv{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-32)} /* 모바일: 사진 위 · 정보 아래 (가격·견적은 하단 구매 바가 늘 보인다) */
   .oc-gv-photo{position:static}
-  /* 상품 목록: 첫 화면에 상품 카드(사진·이름)가 보이게 머리를 줄인다 — 분류 설명은 숨기고(h1 + 대분류 하위 이동), 본문 위·하위 분류·도구줄 여백을 줄인다 */
+  /* 상품 목록: 첫 화면에 상품 카드(사진·이름)가 보이게 머리를 줄인다 — 분류 설명은 숨기고(h1 + 대분류 하위 이동), 본문 위·하위 분류 여백을 줄인다 (도구줄 여백은 기본값 — 2026-11-12 사용자 결정으로 줄이는 규칙 삭제) */
   .oc-pg-hd:has(+ .oc-pg-body [data-goods]) p{display:none}
   .oc-pg-hd:has(+ .oc-pg-body [data-goods]) .oc-subnav{margin-top:var(--oc-sp-16)}
   .oc-pg-body:has([data-goods]){padding-top:var(--oc-sp-16)}
-  .oc-pg-body:has([data-goods]) .oc-toolbar{padding-bottom:var(--oc-sp-8);margin-bottom:var(--oc-sp-16)}
   .oc-pg-body:has([data-goods]) .oc-filter{margin-bottom:var(--oc-sp-16)}
   .oc-gv-name{font-size:var(--oc-fs-24)}
   .oc-gv-spec{margin:var(--oc-sp-16) 0}
@@ -141,7 +141,7 @@
   .oc-gv-tabs [role="tablist"]{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);column-gap:0} /* 탭 3개를 칸 똑같이 */
   .oc-gv-tabs [role="tab"]{white-space:normal;text-align:center;font-size:var(--oc-fs-14);line-height:1.35}
   .oc-gv-panel-t{font-size:var(--oc-fs-20)}
-  .oc-gs-form .oc-btn{padding:0 var(--oc-sp-16)}
+  .oc-gs-form .oc-btn:not(.oc-btn-ic){padding:0 var(--oc-sp-16)}
   /* 비교 표: 왼쪽 항목 칸을 없애 제품 칸을 넓히고, 항목 이름은 값 줄 위에 한 줄로 */
   .oc-cmpv .oc-cmpv-lb{display:none}
   .oc-cmpv{table-layout:auto} /* 고정 배치는 숨긴 첫 칸 몫을 비워 둬 표가 화면 폭을 다 못 쓴다 → 제품 칸 폭을 개수로 나눠 준다 */

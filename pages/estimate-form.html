@@ -44,7 +44,7 @@
     <!-- 상단 메뉴: 제품 / 프로모션 / 기업소식 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰, 구축사례 → 기업소식). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
     <nav class="oc-gnb" aria-label="주 메뉴">
       <div class="oc-gnb-item oc-has-mega">
-        <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-mega">제품 <svg class="oc-gnb-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <a class="oc-gnb-link" href="goods-all.html" aria-haspopup="true" aria-expanded="false" aria-controls="oc-mega">제품 <svg class="oc-gnb-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><!-- 2026-11-12: 누르면 전체 제품, 메가메뉴는 마우스를 올리면(터치는 첫 탭, 키보드는 ↓) 열린다 -->
       </div>
       <a class="oc-gnb-link" href="promotion.html">프로모션</a>
       <a class="oc-gnb-link" href="cases.html">기업소식</a>
@@ -79,7 +79,7 @@
     <div class="oc-wrap oc-mega-in">
       <div class="oc-mega-cols">
         <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-server.html">서버</a></h4><a class="oc-mega-link" href="goods-server-thinksystem.html">Lenovo ThinkSystem</a></div>
-        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-workstation.html">워크스테이션</a></h4><a class="oc-mega-link" href="goods-workstation-thinkstation.html">Lenovo ThinkStation</a><a class="oc-mega-link" href="goods-workstation-p2.html">P2</a><a class="oc-mega-link" href="goods-workstation-p3.html">P3</a><a class="oc-mega-link" href="goods-workstation-p5.html">P5</a></div>
+        <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-workstation.html">워크스테이션</a></h4><a class="oc-mega-link" href="goods-workstation-thinkstation.html">Lenovo ThinkStation</a><a class="oc-mega-link" href="goods-workstation-p2.html">P2</a><a class="oc-mega-link" href="goods-workstation-p3.html">P3</a><a class="oc-mega-link" href="goods-workstation-p4.html">P4</a><a class="oc-mega-link" href="goods-workstation-p5.html">P5</a></div>
         <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-desktop.html">데스크탑</a></h4><a class="oc-mega-link" href="goods-desktop-expertcenter.html">ASUS ExpertCenter</a></div>
         <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-notebook.html">노트북</a></h4><a class="oc-mega-link" href="goods-notebook-thinkpad.html">Lenovo ThinkPad</a><a class="oc-mega-link" href="goods-notebook-x1carbon.html">X1 Carbon</a><a class="oc-mega-link" href="goods-notebook-l16.html">L16</a></div>
         <div><h4 class="oc-mega-t"><a class="oc-mega-link" href="goods-storage.html">스토리지</a></h4><a class="oc-mega-link" href="goods-storage-hc.html">HC All-Flash</a></div>
@@ -293,7 +293,16 @@
 
 <!-- 비교 바 | 고도몰에는 상품 비교 기능이 없어 스킨 JS + 브라우저 저장으로 만든다(견적함과 같은 방식). PC(768 이상) 전용.
      '비교하기'는 비교 화면으로 이동 — 고도몰: 추가 페이지 main/html.php?htmid=goods/compare.html -->
+<div class="oc-cmp-scrim" data-cmp-pop-close hidden></div>
 <div class="oc-cmp" id="oc-cmp" hidden>
+  <!-- 모바일(767 이하) 담은 제품 목록 (2026-11-12 사용자 결정): 비교 바는 사진만 보이므로, 사진 줄을 누르면 바 위로 이름·빼기 목록이 펼쳐진다.
+       PC 는 바의 칸마다 이름·× 가 있어 쓰지 않는다. 내용은 main.js renderCmp 가 바와 함께 그린다 -->
+  <div class="oc-cmp-pop" id="oc-cmpPop" hidden>
+    <div class="oc-wrap">
+      <div class="oc-cmp-pop-hd"><b class="oc-cmp-pop-t">비교할 제품 <span class="oc-cmp-pop-n" id="oc-cmpPopN">0/4</span></b><button type="button" class="oc-cmp-pop-clear" data-cmp-clear>모두 빼기</button><!-- 모바일은 바의 '비우기' 대신 여기 (2026-11-12) — 한 단계 안이라 실수로 다 비우기 어렵고, 바에 사진 40px 자리가 생긴다 --><button type="button" class="oc-ic-btn oc-cmp-pop-x" data-cmp-pop-close aria-label="목록 접기"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><!-- 접기 = 아래 화살표(2026-11-12): 줄마다 빼기가 × 라 닫기까지 × 면 뜻이 겹친다 --></div>
+      <ul class="oc-cmp-pop-list" id="oc-cmpPopList"></ul>
+    </div>
+  </div>
   <div class="oc-wrap oc-cmp-in">
     <div class="oc-cmp-list" id="oc-cmpList"></div>
     <div class="oc-cmp-act"><span id="oc-cmpCount">0/4</span><button type="button" class="oc-btn oc-btn-sm oc-btn-o" data-cmp-clear>비우기</button><a href="compare.html" class="oc-btn oc-btn-sm oc-btn-d" data-cmp-go>비교하기</a></div>

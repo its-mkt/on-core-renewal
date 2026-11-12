@@ -482,7 +482,11 @@
       shortDescription: "CPU: Xeon 634 / 메모리: 16GB / 저장: 512GB / GPU: RTX A400", goodsPrice: 6572000, goodsPriceString: "" },
     '1000000720': { goodsNm: "LENOVO P5 TWR G2", brandNm: "Lenovo", goodsModelNo: "", cate: "ws",
       image: "https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/p5_main.jpg",
-      shortDescription: "CPU: Xeon 634 / 메모리: 32GB / 저장: 512GB / GPU: RTX A400", goodsPrice: 8074000, goodsPriceString: "" }
+      shortDescription: "CPU: Xeon 634 / 메모리: 32GB / 저장: 512GB / GPU: RTX A400", goodsPrice: 8074000, goodsPriceString: "" },
+    // 2026-11-12 운영에 새로 등록된 상품(분류 P4 004001004) — 운영 이름 'LENOVO P4 TWR (Ryzen 9 Pro 9965X3D/32GB/1TB/1100W/Win11Pro)', 사양은 이름 괄호에서
+    '1000000721': { goodsNm: "LENOVO P4 TWR", brandNm: "Lenovo", goodsModelNo: "", cate: "ws",
+      image: "https://godomall-storage.cdn-nhncommerce.com/0873664c217a4be9efdd4b47a75ff1a3/goods/1000000721/image/main/1000000721_main_010.jpg",
+      shortDescription: "CPU: Ryzen 9 Pro 9965X3D / 메모리: 32GB / 저장: 1TB / OS: Win11Pro", goodsPrice: 5300000, goodsPriceString: "" }
   };
 
   // 관리자 '메인 상품 진열'에 등록할 상품 (진열 하나 = 화면의 상품 묶음 하나). 2026-10-27 운영 메인에 진열된 상품을 그 순서대로 옮김 —

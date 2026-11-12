@@ -101,7 +101,6 @@
 @media (max-width:767px){
   .oc-support-hide-sm{display:none}
   .oc-support-search{max-width:none}
-  .oc-support-search .oc-input{font-size:var(--oc-fs-input)} /* 아이폰 입력 확대 방지 */
   .oc-support-files dl{grid-template-columns:var(--oc-sp-64) minmax(0,1fr)}
   .oc-support-contact{gap:var(--oc-sp-24) var(--oc-sp-16)}
   .oc-support-contact b{font-size:var(--oc-fs-18)}

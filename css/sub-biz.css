@@ -64,6 +64,7 @@
 .oc-biz-lookup .oc-input{flex:1 1 0;min-width:0;padding:0 var(--oc-sp-20)}
 .oc-biz-lookup .oc-select{flex:none;width:auto;min-width:var(--oc-sp-128);padding-left:var(--oc-sp-20)}
 .oc-biz-lookup .oc-btn{flex:none;height:var(--oc-sp-40);padding:0 var(--oc-sp-20);font-size:var(--oc-fs-14)}
+.oc-biz-lookup .oc-btn-ic{padding:0}
 .oc-biz-pw-item{margin-bottom:var(--oc-sp-32)} /* 견적 비밀번호 확인: 고른 견적 요약 */
 .oc-biz-st{display:inline-block;min-width:var(--oc-sp-64);padding:var(--oc-sp-4) var(--oc-sp-8);text-align:center;border-radius:999px;border:1px solid var(--oc-line);font-size:var(--oc-fs-12);font-weight:700;color:var(--oc-ink-2)}
 .oc-biz-st--ing{border-color:var(--oc-ink);color:var(--oc-ink)}
@@ -84,7 +85,7 @@
   .oc:has(.oc-biz-form) .oc-ft{padding-bottom:calc(var(--oc-sp-32) + var(--oc-safe-b))}
   .oc-biz-lookup{display:grid;grid-template-columns:minmax(0,1fr) auto} /* 입력은 한 칸씩, 상태 + 조회 한 줄 */
   .oc-biz-lookup .oc-input{grid-column:1/-1}
-  .oc-biz-lookup .oc-input,.oc-biz-lookup .oc-select,.oc-biz-lookup .oc-btn{height:var(--oc-sp-48);font-size:var(--oc-fs-input)} /* 16px 미만이면 아이폰이 입력할 때 화면을 확대한다 */
+  .oc-biz-lookup .oc-input,.oc-biz-lookup .oc-select,.oc-biz-lookup .oc-btn{height:var(--oc-sp-48)} /* 글자는 rem 그대로 — 아이폰 16px 은 (pointer:coarse) 공통 규칙 */
   .oc-biz-lookup .oc-select{min-width:0;width:100%}
   /* 모바일: 2열 격자(사진 + 업종·제목·도입 정보), 요약은 숨긴다 */
   .oc-biz-prodlist a{grid-template-columns:var(--oc-sp-48) minmax(0,1fr)}
@@ -105,11 +106,14 @@
 .oc-est-lookup-sub .oc-sel>.oc-select{min-width:var(--oc-sp-96)}
 .oc-est-lookup-sub .oc-sel-btn{padding-right:var(--oc-sp-40)}
 .oc-est-search :is(.oc-input,.oc-select,.oc-sel-btn,.oc-btn){border-radius:var(--oc-r-sm)}
-.oc-est-search .oc-sel-list{width:100%;min-width:0;border-radius:var(--oc-r-sm);font-size:var(--oc-fs-14)}
-.oc-est-search .oc-sel-opt{justify-content:flex-start;min-height:var(--oc-sp-32);padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-4)}
+.oc-est-search :is(.oc-input,.oc-select,.oc-sel-btn,.oc-drp-btn){font-size:var(--oc-fs-16)} /* 견적 검색 칸 글자 = rem 하나(1rem: PC 16·모바일 14). 화면 폭별로 다시 지정하지 않는다 (2026-11-12 사용자 지시). 휴대폰 16px 은 main.css (pointer:coarse) 공통 규칙 */
+.oc-est-search .oc-sel-list{width:100%;min-width:0;border-radius:var(--oc-r-sm);font-size:var(--oc-fs-16)} /* 펼친 목록 글자 = 선택 상자 글자(1rem) — 2026-11-12 사용자 요청 */
+.oc-est-search .oc-sel-opt{justify-content:flex-start;min-height:var(--oc-sp-40);padding:0 var(--oc-sp-8);border-radius:var(--oc-sp-4)} /* 항목 높이 = min-height 2.5rem 한 값, 위아래 여백 0 — 여백으로 높이를 만들지 않는다 (2026-11-12 사용자 결정) */
 .oc-est-search .oc-sel-opt svg{display:none} /* 좁은 상자에 들어가도록 체크 아이콘 대신 굵은 글씨로 선택 표시 */
-@media (min-width:1280px){
-  .oc-est-search .oc-est-lookup-sub{position:relative}
+@media (min-width:768px) and (max-width:1023px){form.oc-est-search>.oc-biz-lookup{flex-basis:100%}} /* 768~1023 은 늘 두 줄(조건 위 · 검색 아래) — 내용 길이에 따라 한 줄·두 줄이 바뀌지 않게 */
+@media (min-width:1024px){ /* 1024 이상: 두 묶음을 한 줄로 고정하고 사이에 세로 구분선 (2026-11-12 — 그전 1280 이상, 기간이 달력 버튼 하나가 되어 1024 에서도 한 줄) */
+  form.oc-est-search{flex-wrap:nowrap} /* form 으로 한 단계 세게 — 아래 768 묶음의 flex-wrap:wrap 보다 우선 */
+  form.oc-est-search .oc-est-lookup-sub{position:relative;flex:none}
   .oc-est-search .oc-est-lookup-sub::after{content:'';position:absolute;top:50%;right:calc(var(--oc-sp-20) * -1);width:1px;height:var(--oc-sp-24);margin-top:calc(var(--oc-sp-12) * -1);background:var(--oc-line)}
 }
 @media (min-width:768px){
@@ -138,14 +142,30 @@
   .oc-biz-promo-sum{order:-1} /* 프로모션 요약(기간·대상·혜택)은 본문 위 — 조건을 먼저 보고 내려 읽게 */
 }
 @media (max-width:767px){
-  .oc-est-search .oc-biz-lookup .oc-sel{width:100%}
-  .oc-est-search .oc-biz-lookup>.oc-sel:first-of-type{grid-column:1/-1} /* 검색 항목은 한 줄 전체, 진행 상태 + 조회가 다음 줄 */
-  /* 기간: [년][월] 부터 / [년][월] 까지 / [목록 개수] — 3칸 격자 */
-  .oc-est-lookup-sub{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:var(--oc-sp-8);margin-top:0}
-  .oc-est-lookup-sub>.oc-est-lookup-lb{grid-column:1/-1}
-  .oc-est-lookup-sub>span{white-space:nowrap}
-  .oc-est-lookup-sub .oc-sel{width:100%;min-width:0}
-  .oc-est-lookup-sub .oc-sel>.oc-select,.oc-est-lookup-sub>.oc-select{width:100%;min-width:0}
-  .oc-est-lookup-sub>.oc-sel:last-child,.oc-est-lookup-sub>.oc-select:last-child{grid-column:1/3}
-  .oc-est-lookup-sub .oc-select{height:var(--oc-sp-48);font-size:var(--oc-fs-input)}
+  /* 내 견적 찾기 — 모바일 (2026-11-12 사용자 결정: 조건 묶음 / 검색 묶음). 모양은 그대로, 묶음 안 배치만.
+     [기간 ─────][진행 상태 ─][목록 개수]   ← 조건 .oc-est-lookup-sub 한 줄 (PC 와 같이 위)
+     [검색 항목 ─][검색어 ─────][   🔍   ]   ← 검색 .oc-biz-lookup, 조회는 맨 끝
+     두 줄의 칸 경계를 맞춘다(2026-11-12 사용자 요청 — 너비가 제각각이었음): 두 묶음 모두 같은 격자 열(1.2fr · 1fr · --oc-sp-80)을 쓴다 — flex 는 검색칸 안쪽 여백만큼 칸이 어긋났다 */
+  .oc-est-search>:is(.oc-est-lookup-sub,.oc-biz-lookup){display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) var(--oc-sp-80);gap:var(--oc-sp-8);margin:0}
+  .oc-est-search{display:flex;flex-direction:column;gap:var(--oc-sp-12);margin-bottom:var(--oc-sp-24)}
+  .oc-est-search>.oc-est-lookup-sub{order:-1}
+  .oc-est-search>.oc-est-lookup-sub>.oc-drp{min-width:0}
+  .oc-est-search .oc-drp-caret{display:none} /* 한 줄에 셋이라 꺾쇠는 뺀다 — 달력 아이콘이 누르면 열린다는 표시 */
+  .oc-est-search .oc-drp-btn{gap:var(--oc-sp-4);padding:0 var(--oc-sp-12)}
+  .oc-drp.oc-drp-thisyear .oc-drp-y{display:none} /* 올해 범위는 연도를 빼고 '11.02 ~ 11.10' — 한 줄에 들어가게 */
+  .oc-est-search .oc-drp-btn{width:100%;height:var(--oc-sp-48)}
+  .oc-est-search .oc-drp-val{margin-right:auto;overflow:hidden;text-overflow:ellipsis} /* 날짜는 왼쪽, 꺾쇠는 오른쪽 끝 */
+  .oc-est-search .oc-est-lookup-lb{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap} /* '기간' 글자는 화면낭독기용으로만 — 달력 버튼이 '전체 기간'·날짜를 보여 준다 */
+  .oc-est-search>:is(.oc-biz-lookup,.oc-est-lookup-sub)>:is(.oc-sel,.oc-select,.oc-input,.oc-btn,.oc-drp){width:auto;min-width:0} /* 칸 폭은 격자가 정한다 */
+  .oc-est-search>.oc-biz-lookup{grid-template-columns:var(--oc-sp-128) minmax(0,1fr) var(--oc-sp-48)} /* 검색 줄은 검색어가 최대한 넓게(2026-11-12 사용자 요청): 검색 항목 = '검색 항목' 글자 폭, 조회 = 정사각, 나머지는 검색어 */
+  .oc-est-search>.oc-biz-lookup>.oc-input{grid-column:auto} /* 검색 막대 공통 모바일 규칙(검색어 한 줄 전체)을 풀어 둘째 칸에 */
+  .oc-est-search>:is(.oc-biz-lookup,.oc-est-lookup-sub)>:is(.oc-sel,.oc-select,.oc-input,.oc-btn){height:var(--oc-sp-48)}
+  .oc-est-search .oc-sel>:is(.oc-select,.oc-sel-btn){width:100%;min-width:0}
+  .oc-est-search .oc-sel-btn{padding-left:var(--oc-sp-12);padding-right:var(--oc-sp-32)}
+  .oc-est-search .oc-sel-ic{right:var(--oc-sp-12)}
+  .oc-est-search>.oc-est-lookup-sub{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) var(--oc-sp-96)} /* 목록 개수 칸 최소 폭 = --oc-sp-96(모바일 84px) — '500개'까지 여백을 줄이지 않고 다 보인다(2026-11-12 사용자 결정). 기간 칸 비율 1.3 으로 '10.02 ~ 10.28' 도 한 줄 */
+  /* 올해가 아닌 기간(해를 넘기는 범위 포함, 예: 2025.12.24 ~ 2026.01.10)은 연도까지 보여야 해서 한 줄에 셋이 들어가지 않는다 (2026-11-12 사용자 요청) —
+     그때만 기간이 한 줄 전체를 쓰고 진행 상태·목록 개수는 아래 줄로 */
+  .oc-est-search>.oc-est-lookup-sub:has(.oc-drp.oc-is-set:not(.oc-drp-thisyear)){grid-template-columns:minmax(0,1fr) var(--oc-sp-96)}
+  .oc-est-search>.oc-est-lookup-sub:has(.oc-drp.oc-is-set:not(.oc-drp-thisyear))>.oc-drp{grid-column:1/-1}
 }

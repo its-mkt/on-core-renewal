@@ -17,6 +17,20 @@
     });
   });
 
+  // 견적 조회 기간(.oc-drp) — 시안은 서버가 없으므로 목록 행을 요청일로 걸러 보여 준다 (고도몰은 서버가 sd·ed / sy·sm·ey·em 으로 거른다)
+  document.addEventListener('oc-drp-change', function (e) {
+    var sec = e.target.closest('section'), d = e.detail || {}; if (!sec) return;
+    var s = d.start, en = d.end, shown = 0, body = $('.oc-tbl tbody', sec); if (!body) return;
+    var none = $('[data-drp-none]', body); if (none) none.remove();
+    $$('tr', body).forEach(function (tr) {
+      var c = $('[data-label="요청일"]', tr), m = c && /(\d{4})-(\d{2})-(\d{2})/.exec(c.textContent);
+      var dt = m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+      var ok = !s || !en || (dt && dt >= s && dt <= en);
+      tr.hidden = !ok; if (ok) shown++;
+    });
+    if (!shown) body.insertAdjacentHTML('beforeend', '<tr data-drp-none><td colspan="5" class="oc-drp-none">선택한 기간에 접수된 견적이 없습니다.</td></tr>');
+  });
+
   // ① 회원가입
   var all = $('[data-agree-all]');
   if (all) {

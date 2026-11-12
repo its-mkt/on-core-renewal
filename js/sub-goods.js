@@ -31,7 +31,48 @@
     var ul = $('.oc-cards', box), items = $$('.oc-card', ul);
     var by = {}; items.forEach(function (li) { by[li.getAttribute('data-goodsno')] = li; });
     var sel = $('[data-goods-sort]', scope), cnt = $$('[data-goods-count]', scope);
-    if (sel) sel.addEventListener('change', function () { apply(sel.value); });
+    if (sel) sel.addEventListener('change', function () { page = 1; try { history.replaceState({ ocPage: 1 }, '', href(1)); } catch (err) { /* 주소 갱신 실패해도 목록은 1쪽 */ } apply(sel.value); }); // 정렬이 바뀌면 주소의 ?page 도 뺀다 — 새로고침해도 1쪽 // 고도몰도 정렬을 바꾸면 1쪽부터
+
+    /* 쪽 번호 (2026-11-12 사용자 요청): 한 쪽 12개 — 4·3·2열 어느 폭에서도 마지막 줄이 꽉 찬다(PROJECT-RULES 3-5).
+       고도몰 목록과 같은 모양: ‹ › 한 쪽씩, « » 10쪽 묶음 이동(10쪽 넘을 때), 768 미만은 현재 쪽 앞뒤 2쪽만(.oc-pgn-far 숨김).
+       주소에 ?page=N 을 남겨 새로고침·뒤로 가기에도 같은 쪽. '총 n건'은 전체 건수 그대로 */
+    var PER = 12, page = Math.max(1, parseInt(param('page'), 10) || 1);
+    var pgn = document.createElement('nav'); pgn.className = 'oc-pgn'; pgn.setAttribute('aria-label', '쪽 이동');
+    box.parentNode.insertBefore(pgn, box.nextSibling);
+    var IC = { prev: 'm14.5 6-6 6 6 6', next: 'm9.5 6 6 6-6 6', first: 'm12.5 6-6 6 6 6M18.5 6l-6 6 6 6', last: 'm11.5 6 6 6-6 6M5.5 6l6 6-6 6' };
+    function ic(k) { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + IC[k] + '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
+    function href(n) {
+      var q = location.search.replace(/^\?/, '').split('&').filter(function (p) { return p && p.indexOf('page=') !== 0; });
+      if (n > 1) q.push('page=' + n);
+      return location.pathname.split('/').pop() + (q.length ? '?' + q.join('&') : '');
+    }
+    function step(n, k, label, ok) {
+      var c = k === 'first' || k === 'last' ? ' class="oc-pgn-jump"' : ''; // 10쪽 묶음 이동 — 360 폭에서 한 줄을 넘겨 모바일에서는 숨긴다(sub.css)
+      return ok ? '<a href="' + href(n) + '"' + c + ' data-page="' + n + '" aria-label="' + label + '">' + ic(k) + '</a>' : '<span' + c + ' aria-disabled="true" aria-label="' + label + ' 없음">' + ic(k) + '</span>';
+    }
+    function paginate() {
+      var last = Math.max(1, Math.ceil(ids.length / PER)); if (page > last) page = last;
+      $$('li.oc-card', ul).forEach(function (li, i) { li.hidden = i < (page - 1) * PER || i >= page * PER; });
+      if (last < 2) { pgn.hidden = true; return; }
+      pgn.hidden = false;
+      var b0 = Math.floor((page - 1) / 10) * 10 + 1, b1 = Math.min(last, b0 + 9), h = '';
+      if (last > 10) h += step(Math.max(1, b0 - 10), 'first', '이전 10쪽', b0 > 1);
+      h += step(page - 1, 'prev', '이전 쪽', page > 1);
+      for (var n = b0; n <= b1; n++) h += '<a href="' + href(n) + '" data-page="' + n + '"' + (n === page ? ' aria-current="page"' : '') + (Math.abs(n - page) > 2 ? ' class="oc-pgn-far"' : '') + '>' + n + '</a>';
+      h += step(page + 1, 'next', '다음 쪽', page < last);
+      if (last > 10) h += step(Math.min(last, b0 + 10), 'last', '다음 10쪽', b1 < last);
+      pgn.innerHTML = h;
+    }
+    pgn.addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button) return; // Cmd·Ctrl 클릭은 새 탭으로 열리게 둔다
+      var a = e.target.closest('a[data-page]'); if (!a) return;
+      e.preventDefault(); if (+a.getAttribute('data-page') === page) return; // 현재 쪽을 또 누르면 기록을 쌓지 않는다
+      page = +a.getAttribute('data-page');
+      try { history.pushState({ ocPage: page }, '', a.getAttribute('href')); } catch (err) { /* file:// 등 — 주소만 안 바뀜 */ }
+      paginate();
+      var top = $('.oc-toolbar', scope) || box; top.scrollIntoView({ block: 'start' }); // 목록 맨 위로 (고정 헤더 높이는 html scroll-padding-top 이 맡음)
+    });
+    window.addEventListener('popstate', function () { page = Math.max(1, parseInt(param('page'), 10) || 1); paginate(); });
 
     function price(n) { return G[n].goodsPrice || 0; }
     function apply(s) {
@@ -47,6 +88,7 @@
       order.forEach(function (n) { ul.appendChild(by[n]); });
       cnt.forEach(function (c) { c.textContent = ids.length; });
       var empty = $('[data-goods-empty]', scope); if (empty) empty.hidden = ids.length > 0;
+      paginate();
     }
     apply('');
   }

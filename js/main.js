@@ -99,15 +99,24 @@
   // 마우스: 올리면 열리고, 그 직후(0.6초 안)의 클릭은 닫지 않는다 — 올리자마자 누르면 열렸다 바로 닫혀 버리기 때문
   // 마우스로 여는 동작은 CSS 마우스 효과와 같은 조건(마우스 기기 + 768 이상)에서만. 터치 기기는 눌러서 연다
   var HOVER = '(hover:hover) and (pointer:fine) and (min-width:768px)';
-  var megaBtn = $('.oc-has-mega .oc-gnb-link'), mega = $('#oc-mega'), megaTimer, megaHoverAt = 0;
+  var megaBtn = $('.oc-has-mega .oc-gnb-link'), mega = $('#oc-mega'), megaTimer;
   function megaOpen(v) { clearTimeout(megaTimer); mega.hidden = !v; megaBtn.setAttribute('aria-expanded', String(v)); }
-  megaBtn.addEventListener('click', function () { if (!mega.hidden && Date.now() - megaHoverAt < 600) return; megaOpen(mega.hidden); });
-  if (window.matchMedia(HOVER).matches) {
-    [megaBtn, mega].forEach(function (el) {
-      el.addEventListener('mouseenter', function () { if (mega.hidden) megaHoverAt = Date.now(); megaOpen(true); });
-      el.addEventListener('mouseleave', function () { megaTimer = setTimeout(function () { megaOpen(false); }, 160); });
-    });
-  }
+  // '제품'은 전체 제품 링크 (2026-11-12 사용자 요청). 마우스 기기는 올리면 메가메뉴가 열리고 누르면 전체 제품으로 간다.
+  // 터치 기기는 올리기가 없으므로 첫 탭 = 메가메뉴 열기, 열린 상태에서 다시 탭 = 전체 제품. 키보드는 Enter = 이동, ↓ = 메뉴 열고 첫 항목으로
+  megaBtn.addEventListener('click', function (e) {
+    if (window.matchMedia(HOVER).matches) return;
+    if (mega.hidden) { e.preventDefault(); megaOpen(true); }
+  });
+  megaBtn.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowDown') return;
+    e.preventDefault(); megaOpen(true);
+    var first = $('a', mega); if (first) first.focus();
+  });
+  // 마우스 조건은 올릴 때마다 본다 — 좁은 창에서 시작해 넓혀도 올리면 열린다 (2026-11-12 리뷰)
+  [megaBtn, mega].forEach(function (el) {
+    el.addEventListener('mouseenter', function () { if (!window.matchMedia(HOVER).matches) return; megaOpen(true); });
+    el.addEventListener('mouseleave', function () { if (!window.matchMedia(HOVER).matches) return; megaTimer = setTimeout(function () { megaOpen(false); }, 160); });
+  });
 
   var dropBtn = $('.oc-has-drop .oc-gnb-link'), drop = $('#oc-drop'), dropTimer, dropHoverAt = 0;
   function dropOpen(v) { clearTimeout(dropTimer); drop.hidden = !v; dropBtn.setAttribute('aria-expanded', String(v)); }
@@ -167,7 +176,7 @@
     if (mqWide.addEventListener) mqWide.addEventListener('change', onWide); else if (mqWide.addListener) mqWide.addListener(onWide);
   }
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { close(); megaOpen(false); dropOpen(false); }
+    if (e.key === 'Escape') { if (mega.contains(document.activeElement)) megaBtn.focus(); close(); megaOpen(false); dropOpen(false); } // 메뉴 안에 있던 초점은 '제품'으로 돌려준다
   });
 
   /* ── 히어로 슬라이드 (통이미지 배너) ── */
@@ -476,8 +485,19 @@
       return '<div class="oc-cmp-item"><img src="' + esc(imgSrc(c.img)) + '" alt=""><span title="' + esc(c.name) + '">' + esc(shortName(c.name)) + '</span><button type="button" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기">×</button></div>';
     }).join('');
     for (var i = cmp.length; i < 4; i++) html += '<div class="oc-cmp-slot">제품 추가</div>';
+    // 모바일 '펼치기' 표시 (2026-11-12 사용자 요청): 사진 줄을 누르면 목록이 열린다는 걸 보이게. 사진 줄 전체가 버튼이라 표시는 꾸밈(aria-hidden), PC 는 CSS 가 숨김
+    html += '<span class="oc-cmp-more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
     $('#oc-cmpList').innerHTML = html;
     $('#oc-cmpCount').textContent = cmp.length + '/4';
+    // 모바일 펼침 목록: 사진 · 이름(상품 상세 링크) · 빼기
+    var gv = window.OC_VIEW || (window.OC_ROOT ? 'goods-view.html' : 'pages/goods-view.html');
+    $('#oc-cmpPopList').innerHTML = cmp.map(function (c) {
+      return '<li class="oc-cmp-pop-item"><img class="oc-cmp-pop-img" src="' + esc(imgSrc(c.img)) + '" alt="">' +
+        '<a class="oc-cmp-pop-name" href="' + esc(gv + '?no=' + c.no) + '" title="' + esc(c.name) + '">' + esc(shortName(c.name)) + '</a>' +
+        '<button type="button" class="oc-ic-btn oc-cmp-pop-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></li>';
+    }).join('');
+    $('#oc-cmpPopN').textContent = cmp.length + '/4';
+    if (!show) cmpPop(false);
     $$('[data-cmp]').forEach(function (c) { var g = goodsOf(c); c.checked = !!(g && cmpHas(g.no)); });
     if (cmpView) renderCmpView();
   }
@@ -555,7 +575,26 @@
     }
     renderCmp();
   });
+  /* 모바일 비교 바: 사진 줄(#oc-cmpList)을 누르면 담은 제품 목록을 바 위로 펼친다 (2026-11-12 사용자 결정).
+     사진(28px)을 하나씩 누르는 대신 목록 한 번 — 이름이 모두 보이고 '빼기'가 손가락 크기(40). 바깥·닫기·Esc 로 접고, 768 이상이 되면 접는다 */
+  var MOB = window.matchMedia('(max-width:767px)'), cmpListEl = $('#oc-cmpList');
+  function cmpPop(v) {
+    var pop = $('#oc-cmpPop'); if (!pop) return;
+    pop.hidden = !v; $('.oc-cmp-scrim').hidden = !v;
+    cmpBar.classList.toggle('oc-is-pop', v);
+    if (MOB.matches) cmpListEl.setAttribute('aria-expanded', String(v)); // 펼침 상태는 모바일 버튼일 때만 (PC 에서는 역할이 없다)
+  }
+  function cmpListRole() { // 모바일에서만 사진 줄이 버튼 역할
+    if (MOB.matches) { cmpListEl.setAttribute('role', 'button'); cmpListEl.setAttribute('tabindex', '0'); cmpListEl.setAttribute('aria-controls', 'oc-cmpPop'); cmpListEl.setAttribute('aria-label', '담은 제품 목록 보기'); cmpListEl.setAttribute('aria-expanded', String(!$('#oc-cmpPop').hidden)); }
+    else { ['role', 'tabindex', 'aria-controls', 'aria-label', 'aria-expanded'].forEach(function (a) { cmpListEl.removeAttribute(a); }); cmpPop(false); }
+  }
+  cmpListRole();
+  if (MOB.addEventListener) MOB.addEventListener('change', cmpListRole); else if (MOB.addListener) MOB.addListener(cmpListRole);
+  cmpListEl.addEventListener('click', function (e) { if (MOB.matches && !e.target.closest('[data-cmp-del]')) cmpPop($('#oc-cmpPop').hidden); });
+  cmpListEl.addEventListener('keydown', function (e) { if (MOB.matches && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); cmpPop($('#oc-cmpPop').hidden); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#oc-cmpPop').hidden) { cmpPop(false); cmpListEl.focus(); } });
   document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-cmp-pop-close]')) { cmpPop(false); return; }
     var d = e.target.closest('[data-cmp-del]');
     if (d) { cmp = cmp.filter(function (x) { return x.no !== d.getAttribute('data-cmp-del'); }); renderCmp(); return; }
     if (e.target.closest('[data-cmp-clear]')) { cmp = []; renderCmp(); return; }
