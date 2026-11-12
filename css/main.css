@@ -214,7 +214,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 /* 조달안내 (.oc-g2b): 섹션 머리 아래 링크 칸 3개 — 상자 없이 위 가는 선 + 작은 회색 라벨 + 제목 20 + 설명 + → (고객센터 바로가기처럼 마우스를 올리면 → 이동) */
 .oc-g2b{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--oc-sp-24)}
 .oc-g2b-sub{margin:var(--oc-sp-64) 0 var(--oc-sp-20);font-size:var(--oc-fs-20);font-weight:700;color:var(--oc-ink)} /* 조달안내: 링크 줄(.oc-g2b) 아래 '조달 추천 제품' 소제목 + 카드 한 줄 — 링크와 카드가 한 덩어리로 보이지 않게 간격을 넓히고 이름을 붙인다 (2026-10-28) */
-.oc-display--g2b .oc-card{border:1px solid var(--oc-line-2)} /* 조달안내는 흰 바탕 섹션이라(위아래가 회색 섹션) 흰 카드에 옅은 테두리로 모양을 잡는다 */
+.oc-sec:not(.oc-sec-alt) .oc-display .oc-card{border:1px solid var(--oc-line-2)} /* 흰 바탕 섹션의 상품 카드(지금은 카테고리별 추천 — 2026-11-12 조달안내와 자리를 바꿈)는 흰 카드에 옅은 테두리로 모양을 잡는다. 회색 섹션은 테두리 없음 */
 .oc-g2b-item{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto 1fr;align-items:start;column-gap:var(--oc-sp-16);padding-top:var(--oc-sp-20);border-top:1px solid var(--oc-line);transition:border-color .15s,box-shadow .15s}
 .oc-g2b em{grid-column:1;margin-bottom:var(--oc-sp-12);font-style:normal;font-size:var(--oc-fs-14);font-weight:700;color:var(--oc-ink-3);transition:color .15s}
 .oc-g2b b{grid-column:1;font-size:var(--oc-fs-20);transition:color .15s}
@@ -305,7 +305,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
    · 사진 위에는 아무것도 얹지 않는다 — 썸네일 안 글자·로고를 가리지 않게. 분류·진행 상태는 제목 위 빨강 작은 글자
    · 분류·요약·아래 줄이 없으면 그 줄만 빠진다. 제목·요약은 2줄 넘으면 말줄임 */
 .oc-pcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--oc-sp-24)} /* 목록 = 1280 이상 4열 → 3 → 2 → 1. 한 쪽 12개라 어느 폭에서도 마지막 줄이 꽉 찬다 (2026-10-29) */
-.oc-pcards--main{grid-template-columns:repeat(3,minmax(0,1fr))} /* 메인 기업소식은 3건 */
+/* 메인 기업소식(.oc-pcards--main)은 4건 한 줄 — 목록과 같은 4·3·2열에서 넘치는 카드는 숨긴다(2026-10-30, 그전 3건 3열). 480 미만 1열은 3건 */
 .oc-pcards>li{display:flex;min-width:0}
 .oc-pcard{display:flex;flex-direction:column;width:100%;min-width:0;background:#fff;border:1px solid var(--oc-line);border-radius:var(--oc-r);overflow:hidden;transition:box-shadow .25s} /* 모서리 16 = 상품 카드(기준 컴포넌트)와 같게 — 24 는 큰 패널·배너용 (2026-10-29) */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-pcard:hover{box-shadow:var(--oc-lift)}.oc-pcard:hover .oc-pcard-img img{transform:scale(1.04)}} /* 상품 카드와 같은 그림자 + 사진 1.04배 (가장자리 2%만 가려져 썸네일 글자·로고가 잘리지 않는 정도) */
@@ -510,6 +510,7 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
 /* ── 반응형 ── 기준점 480·768·1024·1280: 각 값부터 한 단계 큰 화면으로 본다 (max-width 는 기준점-1px) */
 @media (max-width:1279px){
   .oc-pcards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .oc-pcards--main>:nth-child(4){display:none} /* 메인은 3열이면 3건 */
   .oc-hd-in{gap:var(--oc-sp-24)}
   .oc-gnb-link{--pad:var(--oc-sp-8);font-size:var(--oc-fs-16)}
   .oc-cards{grid-template-columns:repeat(3,1fr)}
@@ -519,7 +520,7 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
 }
 @media (max-width:1023px){
   .oc-pcards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .oc-pcards--main>:nth-child(3){display:none} /* 메인은 2열이면 2건만 — 한 장이 혼자 남지 않게 */
+  .oc-pcards--main>:nth-child(3){display:none} /* 메인은 2열이면 2건만 — 한 줄만 */
   .oc-cmp-slot{display:none} /* 태블릿 폭에서는 빈 칸을 빼서 담은 제품 이름이 덜 잘리게 */
   .oc-final-in{flex-direction:column;align-items:flex-start;gap:var(--oc-sp-32)}
   .oc-final-card{justify-content:flex-start}
